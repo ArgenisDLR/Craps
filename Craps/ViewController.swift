@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var diceImageView2: UIImageView!
     @IBOutlet weak var crapsLabel: UILabel!
     
-    let dice = ["1", "2", "3", "4", "5", "6"]
+    let dice = ["dice1", "dice2", "dice3", "dice4", "dice5", "dice6"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,13 +30,13 @@ class ViewController: UIViewController {
     
     @IBAction func rollButtonPressed(_ sender: UIButton) {
         
-        let leftNumber = Int(arc4random())
-        let rightNumber = Int(arc4random())
+        let leftNumber = Int.random(in: 0..<6)
+        let rightNumber = Int.random(in: 0..<6)
         diceImageView1.image = UIImage(named: dice[leftNumber])
         diceImageView2.image = UIImage(named: dice[rightNumber])
         
         if leftNumber == 0 && rightNumber == 0 {
-            crapsLabel.text = "SNAKE EYES!"
+            crapsLabel.text = "Snake Eyes"
         }
         else if leftNumber == 4 && rightNumber == 4 {
             crapsLabel.text = "Hardaway Pays 7 to 1"
@@ -47,14 +47,17 @@ class ViewController: UIViewController {
         else if leftNumber == 1 && rightNumber == 1 {
             crapsLabel.text = "Hardaway Pays 7 to 1"
         }
+        else if leftNumber == 3 && rightNumber == 3 {
+            crapsLabel.text = "Hardaway Pays 9 to 1"
+        }
         else if leftNumber == 0 && rightNumber == 1 {
             crapsLabel.text = "Craps! You lost!"
         }
-        else if leftNumber == 4 && rightNumber == 4 {
-            crapsLabel.text = "SNAKE EYES!"
+        else if leftNumber == 1 && rightNumber == 0 {
+            crapsLabel.text = "Craps! You lost!"
         }
         else if leftNumber == 4 && rightNumber == 4 {
-            crapsLabel.text = "SNAKE EYES!"
+            crapsLabel.text = "Snake Eyes"
         }
         
     }
